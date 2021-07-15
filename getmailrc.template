@@ -1,0 +1,15 @@
+[retriever]
+type      = SimpleIMAPSSLRetriever
+server    = ${IMAP_SERVER}
+port      = ${IMAP_PORT}
+username  = ${IMAP_USERNAME}
+password  = ${IMAP_PASSWORD}
+mailboxes = ALL
+
+[destination]
+type = Maildir
+path = /mail/
+
+[options]
+read_all = false
+delete = false
