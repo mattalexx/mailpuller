@@ -19,7 +19,7 @@ RUN set -x \
   && rm -rf /var/cache/apk/* \
   && rm -rf /tmp/*
 
-VOLUME /home/getmail.getmail
+VOLUME /home/getmail
 VOLUME /mail
 
 WORKDIR /home/getmail
