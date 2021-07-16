@@ -11,5 +11,7 @@ type = Maildir
 path = /mail/
 
 [options]
-read_all = false
+read_all = False
+delivered_to = false
+received = false
 delete = false
