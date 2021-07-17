@@ -2,7 +2,7 @@
 
 Back up your IMAP-enabled mail account to a local directory.
 
-![Docker Automated build](https://img.shields.io/docker/automated/mattalxndr/mailpuller?style=for-the-badge)
+![Docker Automated build](https://img.shields.io/docker/cloud/build/mattalxndr/mailpuller?style=for-the-badge)
 
 ## Usage
 
@@ -36,3 +36,5 @@ A test script is provided. Add IMAP connection details to the top, and execute:
 vim test.sh
 ./test.sh
 ```
+
+[Docker Automated build]: https://hub.docker.com/r/mattalxndr/mailpuller
