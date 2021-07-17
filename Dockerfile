@@ -4,25 +4,19 @@ ARG VERSION=5.15
 ARG UID=1000
 ARG GID=1000
 
-RUN mkdir -p /home/getmail/.getmail /mail
-ADD ./getmailrc.template /home/getmail/.getmail/
-ADD ./init.sh /home/getmail/
+RUN cd /tmp \
+  && wget http://pyropus.ca/software/getmail/old-versions/getmail-$VERSION.tar.gz -O- \
+    | tar -xz --strip-components=1 \
+  && python setup.py install \
+  && addgroup -g ${GID} usr && adduser -u ${UID} -G usr -DHg '' usr \
+  && mkdir /mail /mail/cur /mail/new /mail/tmp \
+  && chown -R usr: /mail
 
-RUN set -x \
-  && apk add --update libintl gettext \
-  && mv /usr/bin/envsubst /usr/local/bin/envsubst \
-  && wget http://pyropus.ca/software/getmail/old-versions/getmail-$VERSION.tar.gz -O - | \
-    tar -xz --strip-components=1 && python setup.py install \
-  && addgroup -g ${GID} getmail && adduser -u ${UID} -G getmail -D -g '' getmail \
-  && chown -R getmail: /home/getmail /mail \
-  && apk del openssl tzdata gettext libintl \
-  && rm -rf /var/cache/apk/* \
-  && rm -rf /tmp/*
+ADD getmail.sh /usr/local/bin
 
-VOLUME /home/getmail
 VOLUME /mail
 
-WORKDIR /home/getmail
-USER getmail
+USER usr
 
-CMD [ "sh", "-c", "./init.sh && getmail" ]
+ENTRYPOINT [ "getmail.sh" ]
+CMD [ "--getmaildir", "/mail/.getmail" ]
