@@ -2,6 +2,8 @@
 
 Back up your IMAP-enabled mail account to a local directory.
 
+![Docker Automated build](https://img.shields.io/docker/automated/mattalxndr/mailpuller?style=for-the-badge)
+
 ## Usage
 
 First, create a local directory for your mail.
